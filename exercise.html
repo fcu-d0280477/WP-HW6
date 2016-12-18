@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" name ="viesport" content="width=device-width,initial-scale=1">
+<title>BootStrapt exercise</title>
+<!-- latest compiled  and minified CSS-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--Lateest compiled JavaScript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(function() {
+	$.ajax({
+		url: "http://140.134.26.71:58080/web-prog/Hotels",
+		type: "GET",
+		dataType: "json",
+		success: function(data) {
+			var items = data.Infos.Info;
+			for(var i = 0; i < items.length; i++) {
+				var name = items[i].Name;
+				var imgURL = items[i].Picture1	;
+				var URL = items[i].Website;
+				
+
+				if(i% 4==0)
+				{
+					temp = i;
+					$("#attractions").append('<div class="row" id="'+temp+'"> </div>');
+					
+					
+					$("#"+temp).append('<div class="col-md-3 col-xs-12 "><div >'+name+'</div><div><a href="'+URL+'" target="_blank"><img src="' + imgURL +'" height="200" width="200"></a></div></div>');
+					
+				}else
+				{
+					
+					$("#"+temp).append('<div class="col-md-3  col-xs-12"><div >'+name+'</div><div><a href="'+URL+'" target="_blank"><img src="' + imgURL +'" height="200" width="200"></a></div><dov>');
+				}
+
+				
+			}
+		},
+		error: function() {
+		
+		}
+	});
+});
+</script>
+<style>
+#attractions {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+<h1 style="color:blue;margin-left:30px;">BootStrapt exercise</h1>
+
+<div id="attractions">
+
+</div>
+
+</body>
+</html>
